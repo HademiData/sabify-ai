@@ -1,8 +1,16 @@
-*.env
+# Environment variables
 .env
+*.env
 
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
 
-*.sabify/
+# IDE
+.vscode/
 
+# SABIFY
 .sabify/
-__pycache__/.sabify
+*.sabify/
