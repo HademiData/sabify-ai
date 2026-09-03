@@ -1,0 +1,5 @@
+*.env
+.env
+
+.sabify/
+__pycache__/.sabify
