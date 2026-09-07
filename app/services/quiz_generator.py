@@ -123,10 +123,20 @@ class QuizGeneratorService:
         raw_content = ""
 
         try:
+            print("Calling Hugging Face Router...")
+            print("Model:", self.DEFAULT_MODEL)
+            print("HF token configured:", bool(settings.HF_TOKEN))
+
             with httpx.Client(timeout=60.0) as client:
                 response = client.post(self.HF_ROUTER_URL, headers=headers, json=payload)
 
+            print("Hugging Face status:", response.status_code)
+            print("Hugging Face response:", response.text)
+
             if response.status_code != 200:
+                print("HUGGING FACE STATUS:", response.status_code)
+                print("HUGGING FACE RESPONSE:", response.text)
+
                 raise HTTPException(
                     status_code=response.status_code,
                     detail=f"Hugging Face Router Error: {response.text}",
