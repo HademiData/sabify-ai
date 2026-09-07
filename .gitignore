@@ -13,4 +13,5 @@ venv/
 
 # SABIFY
 .sabify/
-*.sabify/
+*.sabify/sabify/
+sabify/
