@@ -1,0 +1,6 @@
+sabify/
+__pycache__/
+*.pyc
+.env
+.git/
+.gitignore

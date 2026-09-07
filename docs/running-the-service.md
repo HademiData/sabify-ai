@@ -8,7 +8,7 @@ The AI service is a Python/FastAPI microservice that provides AI functionality t
 
 # Prerequisites
 
-Before running the service, make sure the following are installed:
+Before running the service, make sure the following are installed or configured:
 
 * Python 3.10+
 * pip
