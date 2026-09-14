@@ -3,6 +3,7 @@
 The SABIFY AI Service is a Python-based AI microservice responsible for providing artificial intelligence capabilities to the SABIFY Learning Management System (LMS).
 
 The service is currently focused on **AI-powered multiple-choice quiz generation**. It is designed as a separate service so that AI functionality can evolve independently from the main Go LMS application.
+<img width="1673" height="991" alt="image" src="https://github.com/user-attachments/assets/7f1aa349-a165-41cb-b80a-2ba3cc386e61" />
 
 ---
 
