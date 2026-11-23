@@ -44,61 +44,33 @@ The main SABIFY LMS is built with Go, while AI functionality is implemented in P
 
 The current architecture is:
 
-```text
-                    SABIFY LMS
-                   Go Application
-                        |
-                        |
-                        | HTTP POST
-                        v
-              +----------------------+
-              |   Python AI Service  |
-              |      FastAPI         |
-              +----------------------+
-                        |
-                        v
-              Hugging Face Router
-                        |
-                        v
-              DeepSeek-V3-0324
-                        |
-                        v
-              Generated Quiz JSON
-                        |
-                        v
-              Python Validation
-                        |
-                        v
-              Shuffle Answer Options
-                        |
-                        v
-                  Go LMS
+```mermaid
+flowchart TD
+    A["SABIFY LMS<br/>Go Application"] -->|HTTP POST| B["Python AI Service<br/>FastAPI"]
+    B --> C["Hugging Face Router"]
+    C --> D["DeepSeek-V3-0324"]
+    D --> E["Generated Quiz JSON"]
+    E --> F["Python Validation"]
+    F --> G["Shuffle Answer Options"]
+    G --> H["Go LMS"]
+
 ```
 
 The AI service **does not directly save quizzes to the database**.
 
 Instead:
 
-```text
-Teacher
-   ↓
-Generate with AI
-   ↓
-Go LMS
-   ↓
-Python AI Service
-   ↓
-Generated Questions
-   ↓
-Go LMS
-   ↓
-Teacher Reviews Questions
-   ↓
-Teacher Edits/Adds/Removes Questions
-   ↓
-Create Quiz
-   ↓
-PostgreSQL
+```mermaid
+flowchart LR
+    A[Teacher] --> B[Generate with AI]
+    B --> C[Go LMS]
+    C --> D[Python AI Service]
+    D --> E[Generated Questions]
+    E --> F[Go LMS]
+    F --> G[Teacher Reviews Questions]
+    G --> H[Teacher Edits / Adds / Removes Questions]
+    H --> I[Create Quiz]
+    I --> J[(PostgreSQL)]
 ```
 
 This ensures that teachers remain in control of the final quiz.
@@ -1631,45 +1603,33 @@ Possible future improvements include:
 ## Course Material Integration
 
 Instead of only using the quiz title and description:
-
-```text
-Course
- ↓
-Course Materials
- ↓
-Relevant Material
- ↓
-AI Quiz Generation
-```
+```mermaid
+flowchart LR
+    A[Course] --> B[Course Materials]
+    B --> C[Relevant Material]
+    C --> D[AI Quiz Generation]
 
 ---
 
 ## RAG
 
 A future version can use:
-
-```text
-Course Materials
-      ↓
-Chunking
-      ↓
-Embeddings
-      ↓
-Vector Database
-      ↓
-Relevant Context
-      ↓
-LLM
-      ↓
-Quiz
+```mermaid
+flowchart LR
+    A[Course Materials] --> B[Chunking]
+    B --> C[Embeddings]
+    C --> D[Vector Database]
+    D --> E[Relevant Context]
+    E --> F[LLM]
+    F --> G[Quiz]
 ```
 
 Possible vector databases include:
-
-```text
-pgvector
-Qdrant
-FAISS
+```mermaid
+flowchart LR
+    A[pgvector]
+    B[Qdrant]
+    C[FAISS]
 ```
 
 ---
@@ -1712,17 +1672,14 @@ Matching
 ## AI Teacher Assistant
 
 The same AI service can eventually support:
-
-```text
-Teacher
- ↓
-AI Teacher Assistant
- ↓
-Lesson planning
-Question generation
-Explanations
-Student performance analysis
-Teaching recommendations
+```mermaid
+flowchart LR
+    A[Teacher] --> B[AI Teacher Assistant]
+    B --> C[Lesson Planning]
+    B --> D[Question Generation]
+    B --> E[Explanations]
+    B --> F[Student Performance Analysis]
+    B --> G[Teaching Recommendations]
 ```
 
 ---
@@ -1730,16 +1687,13 @@ Teaching recommendations
 ## AI Learning Coach
 
 Students could interact with:
-
-```text
-Student
- ↓
-AI Learning Coach
- ↓
-Study recommendations
-Weak-topic detection
-Personalized explanations
-Revision plans
+```mermaid
+flowchart LR
+    A[Student] --> B[AI Learning Coach]
+    B --> C[Study Recommendations]
+    B --> D[Weak-Topic Detection]
+    B --> E[Personalized Explanations]
+    B --> F[Revision Plans]
 ```
 
 ---
@@ -1747,20 +1701,15 @@ Revision plans
 ## AI Analytics
 
 Future AI analytics could use:
-
-```text
-Quiz Results
-Course Activity
-Submission History
-Learning Progress
-        ↓
-      AI/ML
-        ↓
-Learning Insights
-        ↓
-Teacher Dashboard
+```mermaid
+flowchart LR
+    A[Quiz Results] --> E[AI/ML]
+    B[Course Activity] --> E
+    C[Submission History] --> E
+    D[Learning Progress] --> E
+    E --> F[Learning Insights]
+    F --> G[Teacher Dashboard]
 ```
-
 ---
 
 # Design Principle
@@ -1773,16 +1722,12 @@ The AI is an assistant rather than the final authority.
 
 The workflow is intentionally:
 
-```text
-AI Generation
-      ↓
-Validation
-      ↓
-Teacher Review
-      ↓
-Teacher Editing
-      ↓
-Publication
+```mermaid
+flowchart LR
+    A[AI Generation] --> B[Validation]
+    B --> C[Teacher Review]
+    C --> D[Teacher Editing]
+    D --> E[Publication]
 ```
 
 This makes the system safer and more useful for real educational environments.
@@ -1794,23 +1739,20 @@ This makes the system safer and more useful for real educational environments.
 The SABIFY AI Service provides an independent AI layer for the SABIFY LMS.
 
 Current functionality:
-
-```text
-✓ FastAPI API
-✓ Hugging Face integration
-✓ DeepSeek-V3-0324
-✓ Topic-based quiz generation
-✓ Material-based quiz generation
-✓ Structured JSON responses
-✓ Four-option MCQs
-✓ Correct-answer indexing
-✓ Response validation
-✓ Placeholder detection
-✓ JSON cleaning
-✓ Answer-option shuffling
-✓ Go LMS integration
-✓ Teacher review workflow
-```
+- FastAPI API
+- Hugging Face integration
+- DeepSeek-V3-0324
+- Topic-based quiz generation
+- Material-based quiz generation
+- Structured JSON responses
+- Four-option MCQs
+- Correct-answer indexing
+- Response validation
+- Placeholder detection
+- JSON cleaning
+- Answer-option shuffling
+- Go LMS integration
+- Teacher review workflow
 
 Current primary endpoint:
 
