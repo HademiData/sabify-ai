@@ -44,61 +44,33 @@ The main SABIFY LMS is built with Go, while AI functionality is implemented in P
 
 The current architecture is:
 
-```text
-                    SABIFY LMS
-                   Go Application
-                        |
-                        |
-                        | HTTP POST
-                        v
-              +----------------------+
-              |   Python AI Service  |
-              |      FastAPI         |
-              +----------------------+
-                        |
-                        v
-              Hugging Face Router
-                        |
-                        v
-              DeepSeek-V3-0324
-                        |
-                        v
-              Generated Quiz JSON
-                        |
-                        v
-              Python Validation
-                        |
-                        v
-              Shuffle Answer Options
-                        |
-                        v
-                  Go LMS
+```mermaid
+flowchart TD
+    A["SABIFY LMS<br/>Go Application"] -->|HTTP POST| B["Python AI Service<br/>FastAPI"]
+    B --> C["Hugging Face Router"]
+    C --> D["DeepSeek-V3-0324"]
+    D --> E["Generated Quiz JSON"]
+    E --> F["Python Validation"]
+    F --> G["Shuffle Answer Options"]
+    G --> H["Go LMS"]
+
 ```
 
 The AI service **does not directly save quizzes to the database**.
 
 Instead:
 
-```text
-Teacher
-   ↓
-Generate with AI
-   ↓
-Go LMS
-   ↓
-Python AI Service
-   ↓
-Generated Questions
-   ↓
-Go LMS
-   ↓
-Teacher Reviews Questions
-   ↓
-Teacher Edits/Adds/Removes Questions
-   ↓
-Create Quiz
-   ↓
-PostgreSQL
+```mermaid
+flowchart LR
+    A[Teacher] --> B[Generate with AI]
+    B --> C[Go LMS]
+    C --> D[Python AI Service]
+    D --> E[Generated Questions]
+    E --> F[Go LMS]
+    F --> G[Teacher Reviews Questions]
+    G --> H[Teacher Edits / Adds / Removes Questions]
+    H --> I[Create Quiz]
+    I --> J[(PostgreSQL)]
 ```
 
 This ensures that teachers remain in control of the final quiz.
