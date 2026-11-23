@@ -1,0 +1,1175 @@
+/* =========================
+   1. ROOT & VARIABLES
+========================= */
+
+:root {
+  color-scheme: light;
+  --ink: #202521;
+  --green: #1e6f50;
+  --green-dark: #185a41;
+  --mint: #e8f2eb;
+  --paper: #fff;
+  --canvas: #f8f9f7;
+
+  font-family: "DM Sans", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================
+   2. RESET & GLOBAL STYLES
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #aeb5af;
+}
+
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+
+/* =========================
+   3. APP LAYOUT
+========================= */
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.main-content {
+  min-height: 100vh;
+  margin-left: 238px;
+}
+
+.content-wrap {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 42px 50px 20px;
+}
+
+.studio-grid {
+  display: grid;
+  grid-template-columns: minmax(350px, .92fr) minmax(370px, 1.08fr);
+  align-items: start;
+  gap: 22px;
+}
+
+
+/* =========================
+   4. SIDEBAR
+========================= */
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 238px;
+  padding: 30px 19px 18px;
+  background: #fff;
+  border-right: 1px solid #eceeeb;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  color: #202521;
+  font: 800 23px "Manrope", sans-serif;
+  text-decoration: none;
+  letter-spacing: -1.1px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  border-radius: 10px;
+  background: var(--green);
+  color: white;
+  font: 800 20px "Manrope", sans-serif;
+  letter-spacing: -2px;
+}
+
+.brand-ai {
+  color: #8b958e;
+  font-weight: 500;
+}
+
+.workspace-label {
+  margin: 54px 10px 12px;
+  color: #a2a8a3;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+}
+
+.sidebar nav {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 43px;
+  padding: 0 11px;
+  border-radius: 8px;
+  color: #39433c;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-link svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-link.active {
+  color: var(--green);
+  background: #edf5ef;
+}
+
+.nav-link.muted {
+  color: #929a94;
+}
+
+.soon-label {
+  margin-left: auto;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+
+/* =========================
+   5. SIDEBAR CARDS & PROFILE
+========================= */
+
+.help-card {
+  padding: 16px;
+  border: 1px solid #edf0eb;
+  border-radius: 11px;
+  background: #fbfcfa;
+}
+
+.help-icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: #edf5ef;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.help-card strong {
+  font: 700 12px "Manrope", sans-serif;
+}
+
+.help-card p {
+  margin: 5px 0 0;
+  color: #808a82;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 3px 0;
+  padding-top: 16px;
+  border-top: 1px solid #eff0ee;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: #e9efe8;
+  color: #49745d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.profile strong,
+.profile span {
+  display: block;
+}
+
+.profile strong {
+  font-size: 11px;
+}
+
+.profile div:nth-child(2) span {
+  margin-top: 3px;
+  color: #929993;
+  font-size: 10px;
+}
+
+.profile .profile-menu {
+  margin-left: auto;
+  color: #939b95;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   6. TOPBAR
+========================= */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  padding: 0 50px;
+  border-bottom: 1px solid #eceeeb;
+  background: rgba(255, 255, 255, .75);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #929993;
+  font-size: 12px;
+}
+
+.breadcrumb strong {
+  color: #444d47;
+  font-weight: 600;
+}
+
+.crumb-separator {
+  color: #c4c9c5;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #758078;
+  font-size: 11px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #55a477;
+  box-shadow: 0 0 0 3px #e8f4eb;
+}
+
+
+/* =========================
+   7. PAGE INTRO & TYPOGRAPHY
+========================= */
+
+.intro {
+  margin-bottom: 31px;
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+}
+
+.sparkle {
+  margin-right: 5px;
+  font-size: 13px;
+}
+
+.intro h1 {
+  margin: 10px 0 7px;
+  font: 700 32px "Manrope", sans-serif;
+  letter-spacing: -1.35px;
+}
+
+.intro h1 span {
+  color: var(--green);
+}
+
+.intro > p {
+  margin: 0;
+  color: #808982;
+  font-size: 13px;
+}
+
+
+/* =========================
+   8. SHARED CARDS
+========================= */
+
+.form-card,
+.empty-card,
+.loading-card,
+.question-card {
+  border: 1px solid #e9ece8;
+  border-radius: 13px;
+  background: var(--paper);
+  box-shadow: 0 3px 14px rgba(26, 42, 31, .025);
+}
+
+.form-card {
+  padding: 23px 24px 18px;
+}
+
+.card-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 21px;
+}
+
+.step-number {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  background: var(--mint);
+  color: var(--green);
+  font: 700 11px "Manrope", sans-serif;
+}
+
+.card-heading h2 {
+  margin: 0 0 4px;
+  font: 700 15px "Manrope", sans-serif;
+  letter-spacing: -.25px;
+}
+
+.card-heading p {
+  margin: 0;
+  color: #8b938d;
+  font-size: 11px;
+}
+
+
+/* =========================
+   9. SOURCE SELECTOR & INPUTS
+========================= */
+
+.source-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 20px;
+  border-radius: 9px;
+  background: #f5f6f4;
+}
+
+.source-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #808981;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.source-tab svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.source-tab.selected {
+  background: #fff;
+  color: #315e45;
+  box-shadow: 0 1px 4px rgba(20, 35, 24, .09);
+}
+
+.source-panel label,
+.setting-label label {
+  display: block;
+  color: #39423c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.source-panel input,
+.source-panel textarea {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid #e4e8e3;
+  border-radius: 7px;
+  outline: 0;
+  background: #fff;
+  color: #303a33;
+  font-size: 12px;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.source-panel input {
+  height: 41px;
+  padding: 0 12px;
+}
+
+.source-panel textarea {
+  min-height: 112px;
+  padding: 11px 12px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.source-panel input:focus,
+.source-panel textarea:focus,
+.stepper input:focus,
+select:focus {
+  border-color: #75a487;
+  box-shadow: 0 0 0 3px #e7f1e9;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 6px;
+  color: #9aa19b;
+  font-size: 10px;
+}
+
+.field-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field-footer #char-count {
+  margin-top: 6px;
+  color: #a2a8a2;
+  font-size: 10px;
+}
+
+
+/* =========================
+   10. SETTINGS
+========================= */
+
+.settings-divider {
+  height: 1px;
+  margin: 20px 0 16px;
+  background: #edf0ed;
+}
+
+.settings-heading {
+  margin-bottom: 14px;
+  color: #a0a7a1;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 15px;
+}
+
+.setting-label span {
+  display: block;
+  margin-top: 4px;
+  color: #9aa19b;
+  font-size: 10px;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  border: 1px solid #e5e9e5;
+  border-radius: 7px;
+}
+
+.stepper button {
+  width: 29px;
+  height: 29px;
+  border: 0;
+  background: transparent;
+  color: #647068;
+  font-size: 17px;
+}
+
+.stepper input {
+  width: 31px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  text-align: center;
+  color: #323b35;
+  font-size: 11px;
+  font-weight: 700;
+  appearance: textfield;
+}
+
+.stepper input::-webkit-inner-spin-button,
+.stepper input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+select {
+  min-width: 107px;
+  height: 34px;
+  padding: 0 26px 0 10px;
+  border: 1px solid #e5e9e5;
+  border-radius: 7px;
+  outline: 0;
+  background: #fff;
+  color: #4c564f;
+  font-size: 11px;
+}
+
+.difficulty-row {
+  margin-bottom: 18px;
+}
+
+
+/* =========================
+   11. BUTTONS
+========================= */
+
+.generate-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 43px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--green);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background .15s, transform .15s;
+}
+
+.generate-button:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+}
+
+.generate-button:disabled {
+  cursor: wait;
+  opacity: .75;
+  transform: none;
+}
+
+.button-arrow {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.results-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.results-actions button,
+.reveal-button {
+  height: 31px;
+  padding: 0 10px;
+  border: 1px solid #e2e8e2;
+  border-radius: 6px;
+  background: white;
+  color: #48634f;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.results-actions button:hover,
+.reveal-button:hover {
+  background: #f4f8f4;
+}
+
+.reveal-button {
+  margin-top: 10px;
+}
+
+
+/* =========================
+   12. MESSAGES & PRIVACY
+========================= */
+
+.privacy-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 11px 0 0;
+  color: #9ca49d;
+  font-size: 9px;
+}
+
+.privacy-note svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.message {
+  margin: 0 0 12px;
+  padding: 10px 11px;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.error-message {
+  border: 1px solid #f2d7d4;
+  background: #fff7f6;
+  color: #a64036;
+}
+
+
+/* =========================
+   13. EMPTY STATE
+========================= */
+
+.empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 484px;
+  padding: 26px 32px;
+  text-align: center;
+}
+
+.empty-illustration {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 144px;
+  height: 128px;
+  margin-bottom: 18px;
+}
+
+.orbit {
+  position: absolute;
+  border: 1px dashed #dde9df;
+  border-radius: 50%;
+}
+
+.orbit-one {
+  width: 128px;
+  height: 70px;
+  transform: rotate(-28deg);
+}
+
+.orbit-two {
+  width: 117px;
+  height: 86px;
+  transform: rotate(27deg);
+}
+
+.paper-sheet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 61px;
+  height: 76px;
+  padding: 18px 11px 10px;
+  border: 1px solid #d8e5da;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 7px 18px #29452e14;
+  transform: rotate(-5deg);
+}
+
+.paper-sheet span {
+  height: 4px;
+  border-radius: 4px;
+  background: #e9eee9;
+}
+
+.paper-sheet span:nth-child(2) {
+  width: 75%;
+}
+
+.paper-sheet span:nth-child(3) {
+  width: 58%;
+}
+
+.paper-sheet b {
+  position: absolute;
+  right: -10px;
+  bottom: -7px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background: #74a581;
+  color: white;
+  font: 700 14px "Manrope", sans-serif;
+}
+
+.floating-star {
+  position: absolute;
+  top: 12px;
+  right: 19px;
+  color: #d6b965;
+  font-size: 15px;
+}
+
+.empty-kicker {
+  color: #7a9a82;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.empty-card h2,
+.loading-card h2 {
+  margin: 9px 0 7px;
+  font: 700 16px "Manrope", sans-serif;
+  letter-spacing: -.35px;
+}
+
+.empty-card > p,
+.loading-card > p {
+  max-width: 290px;
+  margin: 0;
+  color: #8d968f;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.empty-feature {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 24px;
+  color: #7c887f;
+  font-size: 9px;
+}
+
+.empty-feature span {
+  color: #6a9a78;
+}
+
+.empty-feature i {
+  width: 3px;
+  height: 3px;
+  margin: 0 3px;
+  border-radius: 50%;
+  background: #adb5ae;
+}
+
+
+/* =========================
+   14. LOADING STATE
+========================= */
+
+.loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 484px;
+  padding: 30px;
+  text-align: center;
+}
+
+.loader {
+  width: 35px;
+  height: 35px;
+  margin-bottom: 11px;
+  border: 3px solid #e8f0e9;
+  border-top-color: #498460;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+.loading-track {
+  width: min(250px, 100%);
+  height: 4px;
+  margin: 23px 0 10px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #eef1ee;
+}
+
+.loading-track span {
+  display: block;
+  width: 38%;
+  height: 100%;
+  border-radius: inherit;
+  background: #69a17b;
+  animation: progress 1.4s ease-in-out infinite;
+}
+
+.loading-note {
+  color: #a0a7a1;
+  font-size: 9px;
+}
+
+
+/* =========================
+   15. QUIZ & RESULTS
+========================= */
+
+#quiz-results {
+  display: grid;
+  gap: 12px;
+}
+
+.results-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 3px 1px 4px;
+}
+
+.results-heading h2 {
+  margin: 0 0 4px;
+  font: 700 16px "Manrope", sans-serif;
+}
+
+.results-heading p {
+  margin: 0;
+  color: #8a938c;
+  font-size: 10px;
+}
+
+.question-card {
+  padding: 16px 17px;
+}
+
+.question-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+  color: #8b968d;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+.question-level {
+  color: #6c9476;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+
+.question-card h3 {
+  margin: 0 0 12px;
+  color: #303a33;
+  font: 600 12px/1.6 "DM Sans", sans-serif;
+}
+
+.options-list {
+  display: grid;
+  gap: 6px;
+}
+
+.answer-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 9px;
+  border: 1px solid #edf0ed;
+  border-radius: 6px;
+  color: #657068;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.option-letter {
+  display: grid;
+  flex: 0 0 17px;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+  background: #f3f5f2;
+  color: #758078;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.answer-option.correct {
+  border-color: #c9e2ce;
+  background: #f2f8f3;
+  color: #355d40;
+}
+
+.answer-option.correct .option-letter {
+  background: #dceee0;
+  color: #37714a;
+}
+
+.explanation {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #f5f8f5;
+  color: #627068;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.explanation strong {
+  color: #3d6749;
+}
+
+
+/* =========================
+   16. FOOTER
+========================= */
+
+footer {
+  padding: 20px 0 0;
+  color: #a3aaa4;
+  text-align: center;
+  font-size: 9px;
+}
+
+footer span {
+  color: #7ca184;
+}
+
+
+/* =========================
+   17. ANIMATIONS
+========================= */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(370%);
+  }
+}
+
+
+/* =========================
+   18. RESPONSIVE: TABLET
+========================= */
+
+@media (max-width: 1050px) {
+  .sidebar {
+    width: 205px;
+  }
+
+  .main-content {
+    margin-left: 205px;
+  }
+
+  .content-wrap {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .topbar {
+    padding: 0 30px;
+  }
+
+  .studio-grid {
+    grid-template-columns: minmax(310px, .95fr) minmax(300px, 1.05fr);
+    gap: 14px;
+  }
+
+  .form-card {
+    padding-right: 19px;
+    padding-left: 19px;
+  }
+}
+
+
+/* =========================
+   19. RESPONSIVE: MOBILE
+========================= */
+
+@media (max-width: 760px) {
+  .sidebar {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 58px;
+    padding: 0 19px;
+    border-right: 0;
+    border-bottom: 1px solid #eceeeb;
+  }
+
+  .brand {
+    padding: 0;
+    font-size: 20px;
+  }
+
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+  }
+
+  .workspace-label,
+  .sidebar nav,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .topbar {
+    height: 51px;
+    padding: 0 20px;
+  }
+
+  .topbar-right {
+    font-size: 10px;
+  }
+
+  .content-wrap {
+    padding: 30px 18px 18px;
+  }
+
+  .intro {
+    margin-bottom: 23px;
+  }
+
+  .intro h1 {
+    font-size: 28px;
+  }
+
+  .intro > p {
+    max-width: 420px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .studio-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .empty-card,
+  .loading-card {
+    min-height: 350px;
+  }
+}
+
+
+/* =========================
+   20. RESPONSIVE: SMALL MOBILE
+========================= */
+
+@media (max-width: 390px) {
+  .content-wrap {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .form-card {
+    padding: 17px 15px;
+  }
+
+  .settings-row {
+    gap: 6px;
+  }
+
+  .setting-label span {
+    font-size: 9px;
+  }
+
+  .empty-feature {
+    gap: 5px;
+    font-size: 8px;
+  }
+}
