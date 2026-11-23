@@ -1543,23 +1543,15 @@ Questions may cover:
 AI generation is currently performed synchronously.
 
 A typical request can take several seconds because the Go application must:
-
-```text
-Browser
- ↓
-Go
- ↓
-Python
- ↓
-Hugging Face
- ↓
-DeepSeek
- ↓
-Python
- ↓
-Go
- ↓
-Browser
+```mermaid
+flowchart LR
+    A[Browser] --> B[Go]
+    B --> C[Python]
+    C --> D[Hugging Face]
+    D --> E[DeepSeek]
+    E --> F[Python]
+    F --> G[Go]
+    G --> A
 ```
 
 AI generation has previously taken approximately 24 seconds for a five-question request.
@@ -1609,7 +1601,7 @@ flowchart LR
     B --> C[Relevant Material]
     C --> D[AI Quiz Generation]
 
----
+```
 
 ## RAG
 
@@ -1625,12 +1617,11 @@ flowchart LR
 ```
 
 Possible vector databases include:
-```mermaid
-flowchart LR
-    A[pgvector]
-    B[Qdrant]
-    C[FAISS]
-```
+
+    pgvector
+    Qdrant
+    FAISS
+
 
 ---
 
