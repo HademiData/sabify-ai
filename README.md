@@ -1739,20 +1739,20 @@ This makes the system safer and more useful for real educational environments.
 The SABIFY AI Service provides an independent AI layer for the SABIFY LMS.
 
 Current functionality:
--  FastAPI API
--  Hugging Face integration
--  DeepSeek-V3-0324
--  Topic-based quiz generation
--  Material-based quiz generation
--  Structured JSON responses
--  Four-option MCQs
--  Correct-answer indexing
--  Response validation
--  Placeholder detection
--  JSON cleaning
--  Answer-option shuffling
--  Go LMS integration
--  Teacher review workflow
+- [x] FastAPI API
+- [x] Hugging Face integration
+- [x] DeepSeek-V3-0324
+- [x] Topic-based quiz generation
+- [x] Material-based quiz generation
+- [x] Structured JSON responses
+- [x] Four-option MCQs
+- [x] Correct-answer indexing
+- [x] Response validation
+- [x] Placeholder detection
+- [x] JSON cleaning
+- [x] Answer-option shuffling
+- [x] Go LMS integration
+- [x] Teacher review workflow
 
 Current primary endpoint:
 
